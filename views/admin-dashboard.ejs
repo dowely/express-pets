@@ -18,42 +18,43 @@
       <h1 class="page-section-title mb-big">Manage Pets</h1>
       <div>
         <a href="/admin/create-pet" class="add-pet-btn"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-            fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+               fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
             <path
-              d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+                  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
           </svg>
           Add New Pet</a>
       </div>
 
       <div class="list-of-pets" style="padding-top: 30px">
         <% pets.forEach(pet=> { %>
-          <div class="pet-card" data-species="<%= pet.species %>">
-            <div class="pet-card-text">
-              <h3>
-                <%= pet.name %>
-              </h3>
-              <p class="pet-description">
-                <%= pet.description %>
-              </p>
-              <div class="action-buttons">
-                <a href="/admin/edit-pet/<%= pet._id %>" class="action-btn">Edit</a>
-                <form class="delete-form" style="display: inline" action="/admin/delete-pet" method="POST">
-                  <input type="hidden" name="_id" value="<%= pet._id %>" />
-                  <button class="action-btn">Delete</button>
-                </form>
-              </div>
-            </div>
-            <div class="pet-card-photo">
-              <% if (pet.photo) { %>
-                <img
-                  src="https://res.cloudinary.com/<%= cloudname %>/image/upload/w_330,h_392,c_fill/<%= pet.photo %>.jpg"
-                  alt="A <%= pet.species %> named <%= pet.name %>" />
-                <% } else { %>
-                  <img src="/images/fallback.jpg" alt="A <%= pet.species %> named <%= pet.name %>" />
-                  <% } %>
+        <div class="pet-card" data-species="<%= pet.species %>">
+          <div class="pet-card-text">
+            <h3>
+              <%= pet.name %>
+            </h3>
+            <p class="pet-description">
+              <%= pet.description %>
+            </p>
+            <div class="action-buttons">
+              <a href="/admin/edit-pet/<%= pet._id %>" class="action-btn">Edit</a>
+              <a href="/admin/view-pet-contacts/<%= pet._id %>" class="action-btn">View Contacts</a>
+              <form class="delete-form" style="display: inline" action="/admin/delete-pet" method="POST">
+                <input type="hidden" name="_id" value="<%= pet._id %>" />
+                <button class="action-btn">Delete</button>
+              </form>
             </div>
           </div>
-          <% }) %>
+          <div class="pet-card-photo">
+            <% if (pet.photo) { %>
+            <img
+                 src="https://res.cloudinary.com/<%= cloudname %>/image/upload/w_330,h_392,c_fill/<%= pet.photo %>.jpg"
+                 alt="A <%= pet.species %> named <%= pet.name %>" />
+            <% } else { %>
+            <img src="/images/fallback.jpg" alt="A <%= pet.species %> named <%= pet.name %>" />
+            <% } %>
+          </div>
+        </div>
+        <% }) %>
       </div>
     </div>
   </div>

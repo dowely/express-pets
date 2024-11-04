@@ -437,6 +437,7 @@ textarea.form-field {
 }
 
 .form-overlay {
+  overflow-y: auto;
   background-color: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(5px);
   position: fixed;
@@ -445,9 +446,16 @@ textarea.form-field {
   left: 0;
   right: 0;
   z-index: 100;
-  display: flex;
-  justify-content: center;
-  align-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transform: scale(1.2);
+  transition: all 0.33s ease-out;
+}
+
+.form-overlay--is-visible {
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
 }
 
 .form-overlay-inner {
@@ -457,4 +465,164 @@ textarea.form-field {
   margin: 16px;
   flex: 1;
   align-self: center;
+  display: grid;
+  position: relative;
+  grid-template-columns: 1fr;
+}
+
+.form-photo {
+  order: 1;
+  grid-row: 1;
+  position: relative;
+  height: 200px;
+}
+
+.form-content {
+  padding: 38px 30px;
+}
+
+@media screen and (min-width: 745px) {
+  .form-overlay {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+
+  .form-overlay-inner {
+    grid-template-columns: 340px 1fr;
+  }
+
+  .form-photo {
+    height: auto;
+  }
+
+  .form-content {
+    padding: 38px 58px;
+    position: relative;
+  }
+}
+
+.form-photo p {
+  line-height: 1.2;
+  font-size: 0.9375rem;
+  color: #555;
+  position: absolute;
+  padding: 16px 25px;
+  margin: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.63);
+  backdrop-filter: blur(2px);
+}
+
+.form-photo strong {
+  color: #000;
+  font-size: 2.25rem;
+  font-weight: normal;
+  display: block;
+}
+
+.form-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.justify-right {
+  display: flex;
+  justify-content: right;
+}
+
+.close-form-overlay {
+  position: absolute;
+  top: 0;
+  right: 12px;
+  color: rgba(0, 0, 0, 0.41);
+  font-size: 2.25rem;
+  transform: scaleX(1.2);
+  cursor: pointer;
+  opacity: 0.7;
+  z-index: 100;
+}
+
+.close-form-overlay:hover {
+  opacity: 1;
+}
+
+.pet-contact-btn {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0 0 0 12px;
+  position: relative;
+  top: 4px;
+  opacity: 0.7;
+  outline: none;
+}
+
+.pet-contact-btn:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.thank-you {
+  opacity: 0;
+  visibility: hidden;
+  z-index: 102;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  transition: all 0.33s ease-out;
+}
+
+.thank-you--is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.thank-you p {
+  align-self: center;
+  font-style: 1.4rem;
+}
+
+.thank-you svg {
+  color: rgb(17, 187, 17);
+  position: relative;
+  top: 7px;
+  margin-right: 10px;
+}
+
+.contact-list {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.contact-list th,
+.contact-list td {
+  padding: 10px;
+  vertical-align: top;
+}
+
+.contact-list th {
+  text-align: left;
+  font-weight: normal;
+  font-size: 0.87rem;
+  color: #7d7d7d;
+  padding: 0 10px;
+}
+
+.contact-list td {
+  font-size: 1rem;
+}
+
+.contact-list tr:nth-child(even) {
+  background-color: #f1f1f1;
 }
